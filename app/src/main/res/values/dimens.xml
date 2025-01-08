@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="margin">16dp</dimen>
-    <dimen name="marginTop">24dp</dimen>
+    <dimen name="editTextTopPadding">6dp</dimen>
+    <dimen name="editTextWidth">250dp</dimen>
+    <dimen name="buttonSpace">24dp</dimen>
+    <dimen name="tableColumnSpacer">14dp</dimen>
 </resources>

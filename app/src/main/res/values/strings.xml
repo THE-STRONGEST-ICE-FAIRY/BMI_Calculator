@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">BMI Calculator</string>
+    <string name="labelName">Name</string>
+    <string name="labelAddress">Address</string>
+    <string name="labelBirthday">Birthday</string>
+    <string name="labelContactNo">Contact No.</string>
+    <string name="labelCourseAndYear">Course and Year</string>
+    <string name="labelHeight">Height</string>
+    <string name="labelWeight">Weight</string>
+    <string name="labelBMI">BMI</string>
 </resources>

@@ -18,6 +18,158 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="@dimen/editTextWidth"
+            android:layout_height="wrap_content"
+            android:hint="@string/labelName"
+            android:paddingTop="@dimen/editTextTopPadding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:maxWidth="@dimen/editTextWidth"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:textColorHint="#546E7A" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="@dimen/editTextWidth"
+            android:layout_height="wrap_content"
+            android:hint="@string/labelAddress"
+            android:paddingTop="@dimen/editTextTopPadding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextAddress"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ellipsize="end"
+                android:inputType="text"
+                android:padding="8dp"
+                android:singleLine="true" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="@dimen/editTextWidth"
+            android:layout_height="wrap_content"
+            android:hint="@string/labelBirthday"
+            android:paddingTop="@dimen/editTextTopPadding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="@dimen/editTextWidth"
+            android:layout_height="wrap_content"
+            android:hint="@string/labelContactNo"
+            android:paddingTop="@dimen/editTextTopPadding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextContactNo"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="@dimen/editTextWidth"
+            android:layout_height="wrap_content"
+            android:hint="@string/labelCourseAndYear"
+            android:paddingTop="@dimen/editTextTopPadding">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editTextCourseAndYear"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:padding="8dp"
+                android:singleLine="true"
+                android:ellipsize="end"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="@dimen/editTextWidth"
+                android:layout_height="wrap_content"
+                android:hint="@string/labelHeight"
+                android:paddingTop="@dimen/editTextTopPadding">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:ellipsize="end"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textColorHint="#546E7A" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="@dimen/editTextWidth"
+                android:layout_height="wrap_content"
+                android:hint="@string/labelWeight"
+                android:paddingTop="@dimen/editTextTopPadding">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:ellipsize="end"
+                    android:inputType="text"
+                    android:padding="8dp"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonSpace" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
