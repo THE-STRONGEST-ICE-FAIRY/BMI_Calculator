@@ -34,6 +34,7 @@ class MainActivity2 : AppCompatActivity() {
             findViewById(R.id.textViewContactNo),
             findViewById(R.id.textViewCourseAndYear),
             findViewById(R.id.textViewHeight),
+            findViewById(R.id.textViewWeight),
             findViewById(R.id.textViewWeight)
         )
 
@@ -44,6 +45,7 @@ class MainActivity2 : AppCompatActivity() {
             intent.getStringExtra("contactNo"),
             intent.getStringExtra("courseAndYear"),
             intent.getStringExtra("height"),
+            intent.getStringExtra("inches"),
             intent.getStringExtra("weight"),
             intent.getStringExtra("heightUnit"),
             intent.getStringExtra("weightUnit")
@@ -52,10 +54,17 @@ class MainActivity2 : AppCompatActivity() {
         for (i in textViews.indices) {
             textViews[i].text = data[i] ?: "No data"
         }
+        if (data[8] == "ft") textViews[5].text = "%s ft %s inches".format(data[5], data[6]?: "0")
+        else textViews[5].text = "%s %s".format(data[5], data[8])
+        textViews[6].text = "%s %s".format(data[7], data[9])
 
         textViewBMI = findViewById(R.id.textViewBMI)
 
-        textViewBMI.text = BMICalculator.calculateBMI(data[5]!!.toDouble(), data[6]!!.toDouble(), data[7].toString(), data[8].toString())
+        val bmi = BMICalculator.calculateBMI(data[5]!!.toDouble(), data[6]!!.toDouble(), data[7]!!.toDouble(), data[8].toString(), data[9].toString())
+        val bmiRounded = "%.1f".format(bmi)
+        val status = BMICalculator.calculateStatus(bmi)
+
+        textViewBMI.text = "%s kg/m^2 %s".format(bmiRounded, status)
 
         button = findViewById(R.id.button)
 

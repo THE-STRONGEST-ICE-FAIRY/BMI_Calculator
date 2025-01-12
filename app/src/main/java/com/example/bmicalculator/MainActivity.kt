@@ -1,7 +1,13 @@
     package com.example.bmicalculator
 
+import android.content.Context
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -10,8 +16,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.textfield.TextInputLayout
 
-class MainActivity : AppCompatActivity() {
+    class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +30,23 @@ class MainActivity : AppCompatActivity() {
         }
 
         setup()
+    }
+
+    override fun dispatchTouchEvent(event: MotionEvent?): Boolean {
+        if (event != null) {
+            val view = currentFocus
+            if (view is EditText) {
+                val rect = Rect()
+                view.getGlobalVisibleRect(rect)
+                if (!rect.contains(event.rawX.toInt(), event.rawY.toInt())) {
+                    view.clearFocus()  // Clear focus if the touch is outside the EditText
+
+                    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                    imm.hideSoftInputFromWindow(view.windowToken, 0)
+                }
+            }
+        }
+        return super.dispatchTouchEvent(event)
     }
 
     private lateinit var editTexts: List<EditText>
@@ -38,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.editTextContactNo),
             findViewById(R.id.editTextCourseAndYear),
             findViewById(R.id.editTextHeight),
+            findViewById(R.id.editTextInches),
             findViewById(R.id.editTextWeight)
         )
 
@@ -48,6 +73,40 @@ class MainActivity : AppCompatActivity() {
         val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, units)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
+
+        val inchesContainer: TextInputLayout = findViewById(R.id.editTextInchesContainer)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (parent?.getItemAtPosition(position).toString() == "ft") {
+                    inchesContainer.visibility = View.VISIBLE
+                } else {
+                    inchesContainer.visibility = View.GONE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Optionally handle the case where nothing is selected, like hiding the editText
+                editTexts[6].visibility = View.GONE
+            }
+        }
+
+        editTexts[5].setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && editTexts[5].text.isNullOrEmpty()) {
+                editTexts[5].setText("0")  // Reset if empty
+            }
+        }
+
+        editTexts[6].setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && editTexts[6].text.isNullOrEmpty()) {
+                editTexts[6].setText("0")  // Reset if empty
+            }
+        }
+
+        editTexts[7].setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus && editTexts[7].text.isNullOrEmpty()) {
+                editTexts[7].setText("0")  // Reset if empty
+            }
+        }
 
         spinner2 = findViewById(R.id.spinner2)
         val units2 = listOf("kg", "lbs")
@@ -62,7 +121,8 @@ class MainActivity : AppCompatActivity() {
             val contactNo = editTexts[3].text.toString()
             val courseAndYear = editTexts[4].text.toString()
             val height = editTexts[5].text.toString()
-            val weight = editTexts[6].text.toString()
+            val inches = editTexts[6].text.toString()
+            val weight = editTexts[7].text.toString()
             val heightUnit = spinner.selectedItem.toString()
             val weightUnit = spinner2.selectedItem.toString()
 
@@ -73,6 +133,7 @@ class MainActivity : AppCompatActivity() {
                 putExtra("contactNo", contactNo)
                 putExtra("courseAndYear", courseAndYear)
                 putExtra("height", height)
+                putExtra("inches", inches)
                 putExtra("weight", weight)
                 putExtra("heightUnit", heightUnit)
                 putExtra("weightUnit", weightUnit)

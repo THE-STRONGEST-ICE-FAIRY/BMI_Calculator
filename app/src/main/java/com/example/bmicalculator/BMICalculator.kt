@@ -2,15 +2,13 @@ package com.example.bmicalculator
 
 class BMICalculator {
     companion object {
-        fun calculateBMI(height: Double, weight: Double, heightUnit: String, weightUnit: String): String {
+        fun calculateBMI(height: Double, inches: Double, weight: Double, heightUnit: String, weightUnit: String): Double {
             // Convert height to meters
             val heightInMeters = when (heightUnit.lowercase()) {
                 "cm" -> height / 100
                 "m" -> height
                 "ft" -> {
-                    val feet = height.toInt()
-                    val inches = ((height - feet) * 100).toInt()
-                    (feet * 0.3048) + (inches * 0.0254)
+                    (height * 0.3048) + (inches * 0.0254)
                 }
                 "inch" -> height * 0.0254
                 else -> throw IllegalArgumentException("Invalid height unit")
@@ -25,14 +23,20 @@ class BMICalculator {
 
             // Calculate BMI
             val bmi = weightInKg / (heightInMeters * heightInMeters)
-            val status = when {
-                bmi < 18.5 -> "Underweight"
-                bmi in 18.5..24.9 -> "Normal weight"
-                bmi in 25.0..29.9 -> "Overweight"
-                else -> "Obese"
-            }
 
-            return "BMI: %.2f, Status: $status".format(bmi)
+            return bmi
+        }
+
+        fun calculateStatus(bmi: Double): String {
+            val status = when {
+                bmi < 18.5 -> "UNDERWEIGHT"
+                bmi in 18.5..24.9 -> "NORMAL WEIGHT"
+                bmi in 25.0..29.9 -> "OVERWEIGHT"
+                bmi in 30.0..34.9 -> "OBESITY CLASS I"
+                bmi in 35.0..39.9 -> "OBESITY CLASS II"
+                else -> "OBESITY CLASS III"
+            }
+            return status
         }
     }
 }
