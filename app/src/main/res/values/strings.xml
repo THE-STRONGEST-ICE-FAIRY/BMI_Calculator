@@ -11,4 +11,5 @@
     <string name="labelCalculate">Calculate</string>
     <string name="labelInches">Inches</string>
     <string name="LIT_0">0</string>
+    <string name="labelReturn">Return</string>
 </resources>

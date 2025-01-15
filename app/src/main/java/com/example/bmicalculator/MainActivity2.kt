@@ -1,7 +1,9 @@
 package com.example.bmicalculator
 
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -68,7 +70,45 @@ class MainActivity2 : AppCompatActivity() {
 
         button = findViewById(R.id.button)
 
+        val mediaPlayer: MediaPlayer
+
+        val imageView = findViewById<ImageView>(R.id.imageButton)
+
+        when (status) {
+            "UNDERWEIGHT" -> {
+                imageView.setImageResource(R.drawable.a1)
+                mediaPlayer = MediaPlayer.create(this, R.raw.s1)
+            }
+            "NORMAL WEIGHT" -> {
+                imageView.setImageResource(R.drawable.a2)
+                mediaPlayer = MediaPlayer.create(this, R.raw.s2)
+            }
+            "OVERWEIGHT" -> {
+                imageView.setImageResource(R.drawable.a3)
+                mediaPlayer = MediaPlayer.create(this, R.raw.s3)
+            }
+            "OBESITY CLASS I" -> {
+                imageView.setImageResource(R.drawable.a4)
+                mediaPlayer = MediaPlayer.create(this, R.raw.s4)
+            }
+            "OBESITY CLASS II" -> {
+                imageView.setImageResource(R.drawable.a5)
+                mediaPlayer = MediaPlayer.create(this, R.raw.s5)
+            }
+            else -> {
+                imageView.setImageResource(R.drawable.a6)
+                mediaPlayer = MediaPlayer.create(this, R.raw.s6)
+            }
+        }
+
+        mediaPlayer.start()  // Plays the audio
+
+        imageView.setOnClickListener {
+            mediaPlayer.start()  // Plays the audio
+        }
+
         button.setOnClickListener{
+            mediaPlayer.stop()
             finish()
         }
     }

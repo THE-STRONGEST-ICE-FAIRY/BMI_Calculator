@@ -186,7 +186,18 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/labelReturn" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buttonSpace" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/a6" />
 
     </LinearLayout>
 
